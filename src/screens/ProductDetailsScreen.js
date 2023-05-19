@@ -7,15 +7,17 @@ import {
   Text,
   ScrollView,
   Pressable,
+  TouchableOpacity,
 } from 'react-native';
 import products from '../data/products';
 import { useSelector, useDispatch } from 'react-redux';
 import { cartSlice } from '../store/cartSlice';
-
+import App from '../components/App';
+import { useNavigation } from '@react-navigation/native';
 const ProductDetailsScreen = () => {
   const product = useSelector((state) => state.products.selectedProduct);
   const dispatch = useDispatch();
-
+const navigation = useNavigation();
   const { width } = useWindowDimensions();
 
   const addToCart = () => {
@@ -27,14 +29,21 @@ const ProductDetailsScreen = () => {
       <ScrollView>
         {/* Image Carousel */}
         <FlatList
+        
           data={product.images}
           renderItem={({ item }) => (
+            <TouchableOpacity onPress={()=> {
+             
+              navigation.navigate('App')
+            }}>
             <Image source={{ uri: item }} style={{ width, aspectRatio: 1 }} />
+            </TouchableOpacity>
           )}
           horizontal
           showsHorizontalScrollIndicator={false}
           pagingEnabled
         />
+        <App/>
         <View style={{ padding: 20 }}>
           {/* Title */}
           <Text style={styles.title}>{product.name}</Text>

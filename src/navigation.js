@@ -9,6 +9,7 @@ import { Pressable, Text } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useSelector } from 'react-redux';
 import { selectNumberOfItems } from './store/cartSlice';
+import App from './components/App';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +21,7 @@ const Navigation = () => {
       <Stack.Navigator
         screenOptions={{ contentStyle: { backgroundColor: 'white' } }}
       >
+        {/*  */}
         <Stack.Screen
           name="Products"
           component={ProductsScreen}
@@ -43,6 +45,7 @@ const Navigation = () => {
           options={{ presentation: 'modal' }}
         />
         <Stack.Screen name="Cart" component={ShoppingCart} />
+        <Stack.Screen name="App" component={App} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
